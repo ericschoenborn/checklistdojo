@@ -38,6 +38,15 @@ export class Home extends Component {
               Sample Checklist
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              tag={Link}
+              className="text-medium"
+              to="/TemplateEditor/some-significant-guid"
+            >
+              Sample Template Editor
+            </NavLink>
+          </li>
         </ul>
 
         {signedIn ? (
