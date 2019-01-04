@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import Item from "./Item";
 
 export default class TemplateEditorInstance extends Component {
   displayName = TemplateEditorInstance.name;
@@ -13,7 +14,7 @@ export default class TemplateEditorInstance extends Component {
     this.state = {
       title: "default",
       description: "default",
-      items: []
+      items: [{ text: "first thing" }]
     };
   }
 
@@ -26,7 +27,15 @@ export default class TemplateEditorInstance extends Component {
         </span>
         <h1>{title}</h1>
         <h6>{description}</h6>
-        {items.length === 0 ? <p>no items</p> : <p>{items}</p>}
+        <ul className="removeBullets">
+          {items.map(i => (
+            <span>
+              <Item text={i.text} />
+              <br />
+            </span>
+          ))}
+          <Item placeholder={"Add New Item"} />
+        </ul>
       </div>
     );
   }
