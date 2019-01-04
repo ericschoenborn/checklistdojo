@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Item from "./Item";
+import TemplateEditorTools from "./TemplateEditorTools";
 
 export default class TemplateEditorInstance extends Component {
   displayName = TemplateEditorInstance.name;
@@ -36,6 +37,8 @@ export default class TemplateEditorInstance extends Component {
           ))}
           <Item placeholder={"Add New Item"} />
         </ul>
+        <br />
+        <TemplateEditorTools />
       </div>
     );
   }
