@@ -22,11 +22,6 @@ div.notSelected {
   border-radius: 5px;
 }
 
-.grayed {
-  color: gray;
-  pointer-events: none;
-}
-
 .noColor {
   color: black;
 }

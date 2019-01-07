@@ -14,24 +14,24 @@ export default ({ moveItemUp, moveItemDown, deleteItem, selected, total }) => (
       icon={faArrowUp}
       size={"1x"}
       onClick={moveItemUp}
-      className={selected == 0 || total == -1 ? "grayed" : ""}
+      className={selected == 0 || total == -1 ? "disabled" : ""}
     />{" "}
-    <span className={selected == 0 || total == -1 ? "grayed" : ""}>Move</span>{" "}
+    <span className={selected == 0 || total == -1 ? "disabled" : ""}>Move</span>{" "}
     <FontAwesomeIcon
       icon={faArrowDown}
       size={"1x"}
       onClick={moveItemDown}
-      className={selected == total || total == -1 ? "grayed" : ""}
+      className={selected == total || total == -1 ? "disabled" : ""}
     />{" "}
-    <span className={selected == total || total == -1 ? "grayed" : ""}>
+    <span className={selected == total || total == -1 ? "disabled" : ""}>
       Move
     </span>{" "}
     <FontAwesomeIcon
       icon={faTrash}
       size={"1x"}
       onClick={deleteItem}
-      className={total == -1 ? "grayed" : ""}
+      className={total == -1 ? "disabled" : ""}
     />{" "}
-    <span className={total == -1 ? "grayed" : ""}>Delete</span>{" "}
+    <span className={total == -1 ? "disabled" : ""}>Delete</span>{" "}
   </div>
 );

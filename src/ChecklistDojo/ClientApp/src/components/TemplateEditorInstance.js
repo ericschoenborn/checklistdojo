@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { NavItem, NavLink, Button } from "reactstrap";
+import { NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Item from "./Item";
 import TemplateEditorTools from "./TemplateEditorTools";
 import "./TemplateEditorInstance.css";
+import "./Theme.css";
 
 export default class TemplateEditorInstance extends Component {
   displayName = TemplateEditorInstance.name;
