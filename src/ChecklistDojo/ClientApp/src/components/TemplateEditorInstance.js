@@ -65,6 +65,20 @@ export default class TemplateEditorInstance extends Component {
     });
   };
 
+  handleItemRemove = () => {
+    const key = parseInt(this.state.selected);
+    const newItems = this.state.items.filter((value, index) => {
+      if (index != key) {
+        return value;
+      }
+    });
+    const count = newItems.length;
+    this.setState({
+      items: newItems,
+      selected: key == count ? key - 1 : key
+    });
+  };
+
   render() {
     const { title, description, items, selected } = this.state;
     return (
@@ -92,6 +106,7 @@ export default class TemplateEditorInstance extends Component {
         <TemplateEditorTools
           moveItemUp={this.handleItemMoveUp}
           moveItemDown={this.handleItemMoveDown}
+          deleteItem={this.handleItemRemove}
           selected={selected}
           total={this.state.items.length - 1}
         />
