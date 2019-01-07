@@ -25,6 +25,19 @@ export default class TemplateEditorInstance extends Component {
     };
   }
 
+  handleItemTextChange = event => {
+    const key = event.target.id;
+    const text = event.target.value;
+
+    const newItems = this.state.items.map((value, index) => {
+      return index == key ? text : value;
+    });
+
+    this.setState({
+      items: newItems
+    });
+  };
+
   render() {
     const { title, description, items, selected } = this.state;
     return (
@@ -42,6 +55,7 @@ export default class TemplateEditorInstance extends Component {
                 select={e => {
                   this.setState({ selected: e.target.id });
                 }}
+                textChange={this.handleItemTextChange}
               />
             </div>
           ))}
