@@ -29,7 +29,11 @@ export default class ChecklistTemplate extends Component {
   handleItemSelect = event => {
     const key = parseInt(event.target.id);
     const changedItems = this.state.items.map((value, index) => {
-      index === key ? (value.selected = true) : (value.selected = false);
+      if (index === key) {
+        value.selected = true;
+      } else {
+        value.selected = false;
+      }
       return value;
     });
     this.setState({
@@ -37,13 +41,12 @@ export default class ChecklistTemplate extends Component {
     });
   };
   handleItemTextChange = event => {
-    const key = event.target.id;
+    const key = parseInt(event.target.id);
     const text = event.target.value;
-
     const newItems = this.state.items.map((value, index) => {
-      return index == key ? text : value;
+      value.text = index === key ? text : value.text;
+      return value;
     });
-
     this.setState({
       items: newItems
     });
@@ -79,10 +82,10 @@ export default class ChecklistTemplate extends Component {
     if (length > 0) {
       var noneSelected = true;
       newItems = newItems.map((value, index) => {
-        if (key == index) {
+        if (key === index) {
           value.selected = true;
           noneSelected = false;
-        } else if (index == length - 1 && noneSelected) {
+        } else if (index === length - 1 && noneSelected) {
           value.selected = true;
         }
         return value;
@@ -108,24 +111,32 @@ export default class ChecklistTemplate extends Component {
         <h6>{description}</h6>
         <ul className="removeBullets">
           {items.map((value, index) => (
-            <div className={value.selected ? "selected" : "notSelected"}>
+            <div
+              key={index}
+              className={value.selected ? "selected" : "notSelected"}
+            >
               <span>{index}</span>
               <ChecklistTemplateItem
                 text={value.text}
                 id={index}
+                key={index}
                 select={this.handleItemSelect}
                 textChange={this.handleItemTextChange}
               />
             </div>
           ))}
-          <ChecklistTemplateItem placeholder={"Add New Item"} id="new" />
+          <ChecklistTemplateItem
+            placeholder={"Add New Item"}
+            id="new"
+            key={99}
+          />
         </ul>
         <br />
         <ChecklistTemplateTools
           moveItemUp={this.handleItemMoveUp}
           moveItemDown={this.handleItemMoveDown}
           deleteItem={this.handleItemRemove}
-          noSelected={items.length == 0}
+          noSelected={items.length === 0}
           firstSelected={items[0].selected}
           lastSelected={items[items.length - 1].selected}
         />

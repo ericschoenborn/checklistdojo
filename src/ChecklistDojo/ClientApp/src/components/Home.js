@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavItem, NavLink, Button } from "reactstrap";
+import { NavLink, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export class Home extends Component {
