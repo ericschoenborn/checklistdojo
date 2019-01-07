@@ -19,16 +19,29 @@ export default class TemplateEditorInstance extends Component {
     this.state = {
       title: "default",
       description: "default",
-      selected: 0,
       items: [
-        { text: "first thing" },
-        { text: "secound thing" },
-        { text: "fith thing" },
-        { text: "Part C" }
+        { text: "first thing", selected: true },
+        { text: "secound thing", selected: false },
+        { text: "fith thing", selected: false },
+        { text: "Part C", selected: false }
       ]
     };
   }
-
+  handleItemSelect = event => {
+    const key = parseInt(event.target.id);
+    const changedItems = this.state.items.map((value, index) => {
+      if (index === key) {
+        value.selected = true;
+      } else {
+        value.selected = false;
+      }
+      return value;
+    });
+    console.log(changedItems);
+    this.setState({
+      items: changedItems
+    });
+  };
   handleItemTextChange = event => {
     const key = event.target.id;
     const text = event.target.value;
@@ -43,47 +56,62 @@ export default class TemplateEditorInstance extends Component {
   };
 
   handleItemMoveUp = () => {
-    const key = parseInt(this.state.selected);
+    const key = this.state.items.findIndex(value => value.selected === true);
     const switchItem = this.state.items[key];
     var newItems = this.state.items;
     newItems[key] = newItems[key - 1];
     newItems[key - 1] = switchItem;
 
     this.setState({
-      items: newItems,
-      selected: this.state.selected - 1
+      items: newItems
     });
   };
 
   handleItemMoveDown = () => {
-    const key = parseInt(this.state.selected);
+    const key = this.state.items.findIndex(value => value.selected === true);
     const switchItem = this.state.items[key];
     var newItems = this.state.items;
     newItems[key] = newItems[key + 1];
     newItems[key + 1] = switchItem;
-
     this.setState({
-      items: newItems,
-      selected: parseInt(this.state.selected) + 1
+      items: newItems
     });
   };
 
   handleItemRemove = () => {
-    const key = parseInt(this.state.selected);
-    const newItems = this.state.items.filter((value, index) => {
-      if (index != key) {
+    const key = this.state.items.findIndex((value, index) => {
+      if (value.selected) {
+        return index;
+      }
+    });
+    var newItems = this.state.items.filter(value => {
+      if (!value.selected) {
         return value;
       }
     });
-    const count = newItems.length;
+    const length = newItems.length;
+    if (length > 0) {
+      var noneSelected = true;
+      newItems = newItems.map((value, index) => {
+        if (key == index) {
+          value.selected = true;
+          noneSelected = false;
+        } else if (index == length - 1 && noneSelected) {
+          value.selected = true;
+        }
+        return value;
+      });
+    } else {
+      newItems = [{ text: "", selected: true }];
+    }
+
     this.setState({
-      items: newItems,
-      selected: key == count ? key - 1 : key
+      items: newItems
     });
   };
 
   render() {
-    const { title, description, items, selected } = this.state;
+    const { title, description, items } = this.state;
     return (
       <div>
         <NavLink to="/" tag={Link} className="noColor">
@@ -94,14 +122,12 @@ export default class TemplateEditorInstance extends Component {
         <h6>{description}</h6>
         <ul className="removeBullets">
           {items.map((value, index) => (
-            <div className={index == selected ? "selected" : "notSelected"}>
+            <div className={value.selected ? "selected" : "notSelected"}>
               <span>{index}</span>
               <Item
                 text={value.text}
                 id={index}
-                select={e => {
-                  this.setState({ selected: e.target.id });
-                }}
+                select={this.handleItemSelect}
                 textChange={this.handleItemTextChange}
               />
             </div>
@@ -113,8 +139,9 @@ export default class TemplateEditorInstance extends Component {
           moveItemUp={this.handleItemMoveUp}
           moveItemDown={this.handleItemMoveDown}
           deleteItem={this.handleItemRemove}
-          selected={selected}
-          total={this.state.items.length - 1}
+          noSelected={items.length == 0}
+          firstSelected={items[0].selected}
+          lastSelected={items[items.length - 1].selected}
         />
       </div>
     );
