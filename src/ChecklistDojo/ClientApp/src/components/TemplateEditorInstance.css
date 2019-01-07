@@ -26,3 +26,7 @@ div.notSelected {
   color: gray;
   pointer-events: none;
 }
+
+.noColor {
+  color: black;
+}

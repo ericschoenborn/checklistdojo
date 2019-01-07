@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { NavItem, NavLink, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Item from "./Item";
@@ -83,7 +85,10 @@ export default class TemplateEditorInstance extends Component {
     const { title, description, items, selected } = this.state;
     return (
       <div>
-        <FontAwesomeIcon icon={faHome} size={"1x"} /> Home
+        <NavLink to="/" tag={Link} className="noColor">
+          <FontAwesomeIcon icon={faHome} size={"1x"} />
+          Home
+        </NavLink>
         <h1>{title}</h1>
         <h6>{description}</h6>
         <ul className="removeBullets">
