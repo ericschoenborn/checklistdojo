@@ -30,14 +30,9 @@ export default class TemplateEditorInstance extends Component {
   handleItemSelect = event => {
     const key = parseInt(event.target.id);
     const changedItems = this.state.items.map((value, index) => {
-      if (index === key) {
-        value.selected = true;
-      } else {
-        value.selected = false;
-      }
+      index === key ? (value.selected = true) : (value.selected = false);
       return value;
     });
-    console.log(changedItems);
     this.setState({
       items: changedItems
     });
@@ -79,16 +74,8 @@ export default class TemplateEditorInstance extends Component {
   };
 
   handleItemRemove = () => {
-    const key = this.state.items.findIndex((value, index) => {
-      if (value.selected) {
-        return index;
-      }
-    });
-    var newItems = this.state.items.filter(value => {
-      if (!value.selected) {
-        return value;
-      }
-    });
+    const key = this.state.items.findIndex(value => value.selected === true);
+    var newItems = this.state.items.filter(value => !value.selected);
     const length = newItems.length;
     if (length > 0) {
       var noneSelected = true;
