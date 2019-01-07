@@ -42,7 +42,7 @@ export class Home extends Component {
             <NavLink
               tag={Link}
               className="text-medium"
-              to="/TemplateEditor/some-significant-guid"
+              to="/ChecklistTemplate/some-significant-guid"
             >
               Sample Template Editor
             </NavLink>

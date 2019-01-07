@@ -14,7 +14,7 @@ export default ({
   firstSelected,
   lastSelected
 }) => (
-  <div className="TemplateEditorToolbox">
+  <div className="ChecklistTemplateTools">
     <FontAwesomeIcon icon={faPlus} size={"1x"} /> Task{" "}
     <FontAwesomeIcon icon={faFile} size={"1x"} /> Dubplicate{" "}
     <FontAwesomeIcon

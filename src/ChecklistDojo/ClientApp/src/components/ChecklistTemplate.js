@@ -3,14 +3,13 @@ import { NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import Item from "./Item";
-import TemplateEditorTools from "./TemplateEditorTools";
-import "./TemplateEditorInstance.css";
+import ChecklistTemplateItem from "./ChecklistTemplateItem";
+import ChecklistTemplateTools from "./ChecklistTemplateTools";
+import "./ChecklistTemplate.css";
 import "./Theme.css";
 
-export default class TemplateEditorInstance extends Component {
-  displayName = TemplateEditorInstance.name;
-
+export default class ChecklistTemplate extends Component {
+  displayName = ChecklistTemplate;
   constructor(props) {
     super(props);
 
@@ -111,7 +110,7 @@ export default class TemplateEditorInstance extends Component {
           {items.map((value, index) => (
             <div className={value.selected ? "selected" : "notSelected"}>
               <span>{index}</span>
-              <Item
+              <ChecklistTemplateItem
                 text={value.text}
                 id={index}
                 select={this.handleItemSelect}
@@ -119,10 +118,10 @@ export default class TemplateEditorInstance extends Component {
               />
             </div>
           ))}
-          <Item placeholder={"Add New Item"} id="new" />
+          <ChecklistTemplateItem placeholder={"Add New Item"} id="new" />
         </ul>
         <br />
-        <TemplateEditorTools
+        <ChecklistTemplateTools
           moveItemUp={this.handleItemMoveUp}
           moveItemDown={this.handleItemMoveDown}
           deleteItem={this.handleItemRemove}
