@@ -1,0 +1,23 @@
+div.TemplateEditorToolbox {
+  border: black;
+}
+
+div.selected {
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  width: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: black;
+}
+
+div.notSelected {
+  background-color: grey;
+  padding: 5px;
+  width: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+}
