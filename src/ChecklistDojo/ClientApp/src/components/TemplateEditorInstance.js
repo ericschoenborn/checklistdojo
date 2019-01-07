@@ -20,7 +20,8 @@ export default class TemplateEditorInstance extends Component {
       items: [
         { text: "first thing" },
         { text: "secound thing" },
-        { text: "fith thing" }
+        { text: "fith thing" },
+        { text: "Part C" }
       ]
     };
   }
@@ -35,6 +36,32 @@ export default class TemplateEditorInstance extends Component {
 
     this.setState({
       items: newItems
+    });
+  };
+
+  handleItemMoveUp = () => {
+    const key = parseInt(this.state.selected);
+    const switchItem = this.state.items[key];
+    var newItems = this.state.items;
+    newItems[key] = newItems[key - 1];
+    newItems[key - 1] = switchItem;
+
+    this.setState({
+      items: newItems,
+      selected: this.state.selected - 1
+    });
+  };
+
+  handleItemMoveDown = () => {
+    const key = parseInt(this.state.selected);
+    const switchItem = this.state.items[key];
+    var newItems = this.state.items;
+    newItems[key] = newItems[key + 1];
+    newItems[key + 1] = switchItem;
+
+    this.setState({
+      items: newItems,
+      selected: parseInt(this.state.selected) + 1
     });
   };
 
@@ -62,7 +89,12 @@ export default class TemplateEditorInstance extends Component {
           <Item placeholder={"Add New Item"} id="new" />
         </ul>
         <br />
-        <TemplateEditorTools />
+        <TemplateEditorTools
+          moveItemUp={this.handleItemMoveUp}
+          moveItemDown={this.handleItemMoveDown}
+          selected={selected}
+          total={this.state.items.length - 1}
+        />
       </div>
     );
   }
