@@ -15,6 +15,7 @@ div.selected {
   border-width: 1px;
   border-radius: 5px;
   border-color: black;
+  white-space: nowrap;
 }
 
 div.notSelected {
@@ -24,6 +25,7 @@ div.notSelected {
   border-style: solid;
   border-width: 1px;
   border-radius: 5px;
+  white-space: nowrap;
 }
 
 .noColor {

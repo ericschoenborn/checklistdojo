@@ -126,7 +126,7 @@ export default class ChecklistTemplate extends Component {
               key={index}
               className={value.selected ? "selected" : "notSelected"}
             >
-              <span>{index}</span>
+              <span>{index}</span>{" "}
               <ChecklistTemplateItem
                 text={value.text}
                 placeholder={"Add New Item"}
