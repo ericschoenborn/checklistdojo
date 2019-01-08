@@ -6,26 +6,23 @@ div.ChecklistTemplateTools {
   box-shadow: 0px 0px 10px 0px;
 }
 
-div.selected {
-  background-color: blue;
-  color: white;
+div.checklistTemplateItems {
+  white-space: nowrap;
   padding: 5px;
   width: 50%;
   border-style: solid;
   border-width: 1px;
   border-radius: 5px;
+}
+
+div.selected {
+  background-color: blue;
+  color: white;
   border-color: black;
-  white-space: nowrap;
 }
 
 div.notSelected {
   background-color: grey;
-  padding: 5px;
-  width: 50%;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 5px;
-  white-space: nowrap;
 }
 
 .noColor {

@@ -124,7 +124,9 @@ export default class ChecklistTemplate extends Component {
           {items.map((value, index) => (
             <div
               key={index}
-              className={value.selected ? "selected" : "notSelected"}
+              className={`checklistTemplateItems ${
+                value.selected ? "selected" : "notSelected"
+              }`}
             >
               <span>{index}</span>{" "}
               <ChecklistTemplateItem
