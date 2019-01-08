@@ -29,3 +29,7 @@ div.notSelected {
 .noColor {
   color: black;
 }
+
+input.fillParent {
+  width: 95%;
+}
