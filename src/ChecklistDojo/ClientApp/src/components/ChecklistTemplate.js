@@ -41,10 +41,9 @@ export default class ChecklistTemplate extends Component {
     });
   };
   handleItemTextChange = event => {
-    const key = parseInt(event.target.id);
     const text = event.target.value;
-    const newItems = this.state.items.map((value, index) => {
-      value.text = index === key ? text : value.text;
+    const newItems = this.state.items.map(value => {
+      value.text = value.selected ? text : value.text;
       return value;
     });
     this.setState({
