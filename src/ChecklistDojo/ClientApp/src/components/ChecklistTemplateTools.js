@@ -16,7 +16,7 @@ export default ({
   firstSelected,
   lastSelected
 }) => (
-  <div className="ChecklistTemplateTools">
+  <div className="ChecklistTemplateTools noselect">
     <FontAwesomeIcon icon={faPlus} size={"1x"} onClick={() => addItem("")} />{" "}
     Task{" "}
     <FontAwesomeIcon
