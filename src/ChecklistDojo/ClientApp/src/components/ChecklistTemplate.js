@@ -123,6 +123,7 @@ export default class ChecklistTemplate extends Component {
             type="text"
             placeholder="Blank Template"
             className="noDisplay"
+            maxlength="72"
             value={title}
             onClick={e => this.setState({ title: e.value })}
           />
