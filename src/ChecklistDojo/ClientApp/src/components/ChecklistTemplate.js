@@ -16,7 +16,7 @@ export default class ChecklistTemplate extends Component {
     // This should work as our general core format for a checklist, though it is missing
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
-      title: "default",
+      title: "",
       description: "default",
       items: [
         { text: "first thing", selected: true },
@@ -118,7 +118,15 @@ export default class ChecklistTemplate extends Component {
           <FontAwesomeIcon icon={faHome} size={"1x"} />
           Home
         </NavLink>
-        <h1>{title}</h1>
+        <h1>
+          <input
+            type="text"
+            placeholder="Blank Template"
+            className="noDisplay"
+            value={title}
+            onClick={e => this.setState({ title: e.value })}
+          />
+        </h1>
         <h6>{description}</h6>
         <ul className="removeBullets">
           {items.map((value, index) => (
