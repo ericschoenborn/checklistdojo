@@ -99,6 +99,18 @@ export default class ChecklistTemplate extends Component {
     });
   };
 
+  handleItemAdd = newText => {
+    const newItems = this.state.items
+      .map(value => {
+        value.selected = false;
+        return value;
+      })
+      .concat({ text: newText, selected: true });
+    this.setState({
+      items: newItems
+    });
+  };
+
   render() {
     const { title, description, items } = this.state;
     return (
@@ -118,6 +130,7 @@ export default class ChecklistTemplate extends Component {
               <span>{index}</span>
               <ChecklistTemplateItem
                 text={value.text}
+                placeholder={"Add New Item"}
                 id={index}
                 key={index}
                 select={this.handleItemSelect}
@@ -125,11 +138,6 @@ export default class ChecklistTemplate extends Component {
               />
             </div>
           ))}
-          <ChecklistTemplateItem
-            placeholder={"Add New Item"}
-            id="new"
-            key={99}
-          />
         </ul>
         <br />
         <ChecklistTemplateTools
@@ -139,6 +147,10 @@ export default class ChecklistTemplate extends Component {
           noSelected={items.length === 0}
           firstSelected={items[0].selected}
           lastSelected={items[items.length - 1].selected}
+          addItem={this.handleItemAdd}
+          duplicateItem={
+            this.state.items.find(value => value.selected === true).text
+          }
         />
       </div>
     );

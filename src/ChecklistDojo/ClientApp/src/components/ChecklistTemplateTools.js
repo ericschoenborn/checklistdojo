@@ -10,13 +10,21 @@ export default ({
   moveItemUp,
   moveItemDown,
   deleteItem,
+  addItem,
+  duplicateItem,
   noSelection,
   firstSelected,
   lastSelected
 }) => (
   <div className="ChecklistTemplateTools">
-    <FontAwesomeIcon icon={faPlus} size={"1x"} /> Task{" "}
-    <FontAwesomeIcon icon={faFile} size={"1x"} /> Dubplicate{" "}
+    <FontAwesomeIcon icon={faPlus} size={"1x"} onClick={() => addItem("")} />{" "}
+    Task{" "}
+    <FontAwesomeIcon
+      icon={faFile}
+      size={"1x"}
+      onClick={() => addItem(duplicateItem)}
+    />{" "}
+    Dubplicate{" "}
     <FontAwesomeIcon
       icon={faArrowUp}
       size={"1x"}
