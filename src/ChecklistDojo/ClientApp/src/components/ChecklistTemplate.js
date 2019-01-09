@@ -19,7 +19,7 @@ export default class ChecklistTemplate extends Component {
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
       title: "",
-      description: "default",
+      description: "",
       items: [
         { text: "first thing", selected: true },
         { text: "secound thing", selected: false },

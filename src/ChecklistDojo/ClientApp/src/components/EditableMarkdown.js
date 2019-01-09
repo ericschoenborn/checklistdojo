@@ -14,13 +14,17 @@ class EditableMarkdown extends Component {
 
   render() {
     const { text, OnChange, edit } = this.state;
-    const textAlt = text.replace("<", "&lt;");
+    const textAlt =
+      text.length === 0
+        ? "Click here to add a description"
+        : text.replace("<", "&lt;");
     return (
       <div>
         {edit ? (
-          <input
+          <textarea
+            rows="7"
+            cols="30"
             autoFocus
-            type="text"
             maxLength="280"
             onBlur={() => this.setState({ edit: false })}
             onChange={event => {
@@ -30,7 +34,10 @@ class EditableMarkdown extends Component {
             value={text}
           />
         ) : (
-          <div onClick={() => this.setState({ edit: true })}>
+          <div
+            className={text.length === 0 ? "default" : ""}
+            onClick={() => this.setState({ edit: true })}
+          >
             <Markdown>{textAlt}</Markdown>
           </div>
         )}
