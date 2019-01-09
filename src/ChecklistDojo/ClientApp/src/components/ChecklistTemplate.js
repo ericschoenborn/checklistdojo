@@ -7,6 +7,8 @@ import ChecklistTemplateItem from "./ChecklistTemplateItem";
 import ChecklistTemplateTools from "./ChecklistTemplateTools";
 import "./ChecklistTemplate.css";
 import "./Theme.css";
+import Markdown from "markdown-to-jsx";
+import EditableMarkdown from "./EditableMarkdown";
 
 export default class ChecklistTemplate extends Component {
   displayName = ChecklistTemplate;
@@ -26,6 +28,7 @@ export default class ChecklistTemplate extends Component {
       ]
     };
   }
+
   handleItemSelect = event => {
     const key = parseInt(event.target.id);
     const changedItems = this.state.items.map((value, index) => {
@@ -40,14 +43,19 @@ export default class ChecklistTemplate extends Component {
       items: changedItems
     });
   };
-  handleItemTextChange = event => {
-    const text = event.target.value;
+  handleItemTextChange = text => {
     const newItems = this.state.items.map(value => {
       value.text = value.selected ? text : value.text;
       return value;
     });
     this.setState({
       items: newItems
+    });
+  };
+
+  handleDiscriptionUpdate = text => {
+    this.setState({
+      description: text
     });
   };
 
@@ -125,10 +133,14 @@ export default class ChecklistTemplate extends Component {
             className="noDisplay"
             maxlength="72"
             value={title}
-            onClick={e => this.setState({ title: e.value })}
+            onChange={e => this.setState({ title: e.value })}
           />
         </h1>
-        <h6>{description}</h6>
+        <EditableMarkdown
+          text={description}
+          update={this.handleDiscriptionUpdate}
+        />
+        <br />
         <ul className="removeBullets">
           {items.map((value, index) => (
             <div

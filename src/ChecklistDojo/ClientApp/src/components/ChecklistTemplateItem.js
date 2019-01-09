@@ -8,6 +8,6 @@ export default ({ text, placeholder, id, select, textChange }) => (
     value={text}
     id={id}
     onClick={select}
-    onChange={textChange}
+    onChange={event => textChange(event.target.value)}
   />
 );
