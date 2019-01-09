@@ -116,8 +116,7 @@ export default class ChecklistTemplate extends Component {
   handleItemAdd = newText => {
     const newItems = this.state.items
       .map(value => {
-        value.selected = false;
-        return value;
+        return { ...value, selected: false };
       })
       .concat({ text: newText, selected: true });
     this.setState({
