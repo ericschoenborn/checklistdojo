@@ -114,13 +114,31 @@ export default class ChecklistTemplate extends Component {
   };
 
   handleItemAdd = newText => {
-    const newItems = this.state.items
-      .map(value => {
+    const selectedItem = this.state.items.findIndex(
+      value => value.selected === true
+    );
+    const firstHalf = this.state.items.filter(
+      (value, index) => index <= selectedItem
+    );
+    const removedSelected = firstHalf.map(i => {
+      return { ...i, selected: false };
+    });
+    const secoundHalf = this.state.items.filter((value, index) => {
+      if (index > selectedItem) {
         return { ...value, selected: false };
-      })
-      .concat({ text: newText, selected: true });
+      }
+    });
+    const addItedAtPosistion = removedSelected.concat(
+      [
+        {
+          text: newText,
+          selected: true
+        }
+      ].concat(secoundHalf)
+    );
+
     this.setState({
-      items: newItems
+      items: addItedAtPosistion
     });
   };
 
