@@ -83,27 +83,34 @@ export default class ChecklistTemplate extends Component {
   };
 
   handleItemRemove = () => {
-    const key = this.state.items.findIndex(value => value.selected === true);
-    var newItems = this.state.items.filter(value => !value.selected);
-    const length = newItems.length;
-    if (length > 0) {
-      var noneSelected = true;
-      newItems = newItems.map((value, index) => {
-        if (key === index) {
-          value.selected = true;
-          noneSelected = false;
-        } else if (index === length - 1 && noneSelected) {
-          value.selected = true;
-        }
-        return value;
+    if (this.state.items.length < 2) {
+      this.setState({
+        items: [{ text: "", selected: true }]
       });
     } else {
-      newItems = [{ text: "", selected: true }];
+      const indexOfItemToRemove = this.state.items.findIndex(
+        i => i.selected === true
+      );
+      const lastItemWasRemoved =
+        indexOfItemToRemove >= this.state.items.length - 1;
+      const itemsWithItemRemoved = this.state.items.filter(
+        value => !value.selected
+      );
+      const length = itemsWithItemRemoved.length - 1;
+      const itemsWithNextItemSelected = itemsWithItemRemoved.map(
+        (val, index) => {
+          return {
+            ...val,
+            selected:
+              indexOfItemToRemove == index ||
+              (lastItemWasRemoved && length == index)
+          };
+        }
+      );
+      this.setState({
+        items: itemsWithNextItemSelected
+      });
     }
-
-    this.setState({
-      items: newItems
-    });
   };
 
   handleItemAdd = newText => {
