@@ -138,7 +138,7 @@ export default class ChecklistTemplate extends Component {
         </h1>
         <EditableMarkdown
           text={description}
-          update={this.handleDiscriptionUpdate}
+          OnChange={this.handleDiscriptionUpdate}
         />
         <br />
         <ul className="removeBullets">

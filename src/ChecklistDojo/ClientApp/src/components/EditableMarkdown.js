@@ -7,13 +7,13 @@ class EditableMarkdown extends Component {
     super(props);
     this.state = {
       text: props.text,
-      change: props.update,
+      OnChange: props.OnChange,
       edit: false
     };
   }
 
   render() {
-    const { text, change, edit } = this.state;
+    const { text, OnChange, edit } = this.state;
     return (
       <div>
         {edit ? (
@@ -22,7 +22,7 @@ class EditableMarkdown extends Component {
             onBlur={() => this.setState({ edit: false })}
             onChange={event => {
               this.setState({ text: event.target.value });
-              change(event.target.value);
+              OnChange(event.target.value);
             }}
             value={text}
           />
