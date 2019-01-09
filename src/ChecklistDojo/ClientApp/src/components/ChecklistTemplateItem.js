@@ -6,6 +6,7 @@ export default ({ text, placeholder, id, select, textChange }) => (
     type="text"
     placeholder={placeholder}
     value={text}
+    maxLength="72"
     id={id}
     onClick={select}
     onChange={event => textChange(event.target.value)}

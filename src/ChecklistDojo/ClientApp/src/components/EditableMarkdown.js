@@ -20,6 +20,8 @@ class EditableMarkdown extends Component {
         {edit ? (
           <input
             autoFocus
+            type="text"
+            maxLength="280"
             onBlur={() => this.setState({ edit: false })}
             onChange={event => {
               this.setState({ text: event.target.value });

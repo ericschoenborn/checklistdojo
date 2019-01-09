@@ -137,7 +137,7 @@ export default class ChecklistTemplate extends Component {
             type="text"
             placeholder="Blank Template"
             className="noDisplay"
-            maxlength="72"
+            maxLength="72"
             value={title}
             onChange={e => this.setState({ title: e.value })}
           />
