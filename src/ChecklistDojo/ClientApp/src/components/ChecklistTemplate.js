@@ -165,26 +165,28 @@ export default class ChecklistTemplate extends Component {
           OnChange={this.handleDiscriptionUpdate}
         />
         <br />
-        <ul className="removeBullets">
-          {items.map((value, index) => (
-            <div
-              key={index}
-              className={`checklistTemplateItems ${
-                value.selected ? "selected" : "notSelected"
-              }`}
-            >
-              <span>{index}</span>{" "}
-              <ChecklistTemplateItem
-                text={value.text}
-                placeholder={"Add New Item"}
-                id={index}
+        <div className="scroller">
+          <ul className="removeBullets">
+            {items.map((value, index) => (
+              <div
                 key={index}
-                select={this.handleItemSelect}
-                textChange={this.handleItemTextChange}
-              />
-            </div>
-          ))}
-        </ul>
+                className={`checklistTemplateItems ${
+                  value.selected ? "selected" : "notSelected"
+                }`}
+              >
+                <span>{index}</span>
+                <ChecklistTemplateItem
+                  text={value.text}
+                  placeholder={"Add New Item"}
+                  id={index}
+                  key={index}
+                  select={this.handleItemSelect}
+                  textChange={this.handleItemTextChange}
+                />
+              </div>
+            ))}
+          </ul>
+        </div>
         <br />
         <ChecklistTemplateTools
           moveItemUp={this.handleItemMoveUp}
