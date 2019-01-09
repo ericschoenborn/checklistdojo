@@ -14,6 +14,7 @@ class EditableMarkdown extends Component {
 
   render() {
     const { text, OnChange, edit } = this.state;
+    const textAlt = text.replace("<", "&lt;");
     return (
       <div>
         {edit ? (
@@ -27,7 +28,9 @@ class EditableMarkdown extends Component {
             value={text}
           />
         ) : (
-          <div onClick={() => this.setState({ edit: true })}>{text}</div>
+          <div onClick={() => this.setState({ edit: true })}>
+            <Markdown>{textAlt}</Markdown>
+          </div>
         )}
       </div>
     );
