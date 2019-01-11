@@ -32,12 +32,7 @@ export default class ChecklistTemplate extends Component {
   handleItemSelect = event => {
     const key = parseInt(event.target.id);
     const changedItems = this.state.items.map((value, index) => {
-      if (index === key) {
-        value.selected = true;
-      } else {
-        value.selected = false;
-      }
-      return value;
+      return { ...value, selected: index === key };
     });
     this.setState({
       items: changedItems
@@ -128,14 +123,13 @@ export default class ChecklistTemplate extends Component {
         return { ...value, selected: false };
       }
     });
-    const addItemAtPosistion = removedSelected.concat(
-      [
-        {
-          text: newText,
-          selected: true
-        }
-      ].concat(secondHalf)
-    );
+    const addItemAtPosistion = removedSelected.concat([
+      {
+        text: newText,
+        selected: true
+      },
+      ...secondHalf
+    ]);
 
     this.setState({
       items: addItemAtPosistion
