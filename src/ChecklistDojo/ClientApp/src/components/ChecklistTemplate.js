@@ -122,7 +122,7 @@ export default class ChecklistTemplate extends Component {
         return { ...value, selected: false };
       }
     });
-    const addItemAtPosistion = removedSelected.concat([
+    const addItemAtPosition = removedSelected.concat([
       {
         text: newText,
         selected: true
@@ -131,7 +131,7 @@ export default class ChecklistTemplate extends Component {
     ]);
 
     this.setState({
-      items: addItemAtPosistion
+      items: addItemAtPosition
     });
   };
 
