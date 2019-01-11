@@ -7,7 +7,6 @@ import ChecklistTemplateItem from "./ChecklistTemplateItem";
 import ChecklistTemplateTools from "./ChecklistTemplateTools";
 import "./ChecklistTemplate.css";
 import "./Theme.css";
-import Markdown from "markdown-to-jsx";
 import EditableMarkdown from "./EditableMarkdown";
 
 export default class ChecklistTemplate extends Component {
