@@ -32,10 +32,6 @@ div.notSelected {
   background-color: grey;
 }
 
-.noColor {
-  color: black;
-}
-
 input.fillParent {
   width: 95%;
 }
