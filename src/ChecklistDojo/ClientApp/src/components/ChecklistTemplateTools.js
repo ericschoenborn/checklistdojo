@@ -18,8 +18,7 @@ export default ({
 }) => (
   <div className="ChecklistTemplateTools noselect">
     <FontAwesomeIcon icon={faPlus} size={"1x"} onClick={() => addItem("")} />{" "}
-    Task{" "}
-    <FontAwesomeIcon icon={faFile} size={"1x"} onClick={() => duplicateItem} />{" "}
+    Task <FontAwesomeIcon icon={faFile} size={"1x"} onClick={duplicateItem} />{" "}
     Dubplicate{" "}
     <FontAwesomeIcon
       icon={faArrowUp}
