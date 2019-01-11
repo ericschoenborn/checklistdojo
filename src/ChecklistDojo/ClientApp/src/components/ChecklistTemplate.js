@@ -190,9 +190,11 @@ export default class ChecklistTemplate extends Component {
           firstSelected={items[0].selected}
           lastSelected={items[items.length - 1].selected}
           addItem={this.handleItemAdd}
-          duplicateItem={
-            this.state.items.find(value => value.selected === true).text
-          }
+          duplicateItem={() => {
+            this.handleItemAdd(
+              this.state.items.find(value => value.selected).text
+            );
+          }}
         />
       </div>
     );
