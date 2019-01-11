@@ -6,14 +6,14 @@ class EditableMarkdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: props.text,
       OnChange: props.OnChange,
       edit: false
     };
   }
 
   render() {
-    const { text, OnChange, edit } = this.state;
+    const { OnChange, edit } = this.state;
+    const text = this.props.text;
     const textAlt =
       text.length === 0
         ? "Click here to add a description"
@@ -28,7 +28,6 @@ class EditableMarkdown extends Component {
             maxLength="280"
             onBlur={() => this.setState({ edit: false })}
             onChange={event => {
-              this.setState({ text: event.target.value });
               OnChange(event.target.value);
             }}
             value={text}
