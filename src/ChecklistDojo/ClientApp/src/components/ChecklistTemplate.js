@@ -53,7 +53,7 @@ export default class ChecklistTemplate extends Component {
     });
   };
 
-  handleDiscriptionUpdate = text => {
+  handleDescriptionUpdate = text => {
     this.setState({
       description: text
     });
@@ -123,22 +123,22 @@ export default class ChecklistTemplate extends Component {
     const removedSelected = firstHalf.map(i => {
       return { ...i, selected: false };
     });
-    const secoundHalf = this.state.items.filter((value, index) => {
+    const secondHalf = this.state.items.filter((value, index) => {
       if (index > selectedItem) {
         return { ...value, selected: false };
       }
     });
-    const addItedAtPosistion = removedSelected.concat(
+    const addItemAtPosistion = removedSelected.concat(
       [
         {
           text: newText,
           selected: true
         }
-      ].concat(secoundHalf)
+      ].concat(secondHalf)
     );
 
     this.setState({
-      items: addItedAtPosistion
+      items: addItemAtPosistion
     });
   };
 
@@ -162,7 +162,7 @@ export default class ChecklistTemplate extends Component {
         </h1>
         <EditableMarkdown
           text={description}
-          OnChange={this.handleDiscriptionUpdate}
+          OnChange={this.handleDescriptionUpdate}
         />
         <br />
         <div className="scroller">
