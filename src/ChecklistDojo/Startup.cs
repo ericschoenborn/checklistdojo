@@ -6,7 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ChecklistDojo.Autofac;
+using ConsoleApp.PostgreSQL;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using ILogger = Serilog.ILogger;
 
@@ -16,11 +20,12 @@ namespace ChecklistDojo
     {
         private AssemblyName CurrentAssemblyInfo { get; }
 
-        public Startup()
+        public Startup(IConfiguration configuration)
         {
             CurrentAssemblyInfo = typeof(Startup).Assembly.GetName();
+            Configuration = configuration;
         }
-
+        public IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -34,19 +39,21 @@ namespace ChecklistDojo
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddDbContext<TodoContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-            // This method gets called by the runtime after ConfigureServices is called.
-            public void ConfigureContainer(ContainerBuilder builder)
-            {
-                builder.RegisterModule<DataAccessModule>();
-                builder.RegisterModule<LoggingModule>();
-                builder.RegisterModule<MetricsModule>();
-                builder.RegisterModule<ServicesModule>();
-            }
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<DataAccessModule>();
+            builder.RegisterModule<LoggingModule>();
+            builder.RegisterModule<MetricsModule>();
+            builder.RegisterModule<ServicesModule>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
+        public void Configure(IApplicationBuilder app,
             IHostingEnvironment env,
             ILogger serverLogger,
             IApplicationLifetime appLifetime,
