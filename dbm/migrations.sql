@@ -1,6 +1,6 @@
 --Checklist_Template_User migrations
 CREATE SCHEMA IF NOT EXISTS ChecklistDojo;
-CREATE TABLE IF NOT EXISTS ChecklistDojo.Checklist_Template_User(
+CREATE TABLE IF NOT EXISTS ChecklistDojo.ChecklistTemplateUser(
   ID SERIAL NOT NULL PRIMARY KEY ,
   UserID SERIAL NOT NULL,
   Name VARCHAR(72) NOT NULL,
