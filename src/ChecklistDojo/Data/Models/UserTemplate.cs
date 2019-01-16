@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ChecklistDojo.Data.Models
 {
 
-    public class UserTemplate : BaseEntity
+    public class UserTemplate
     {
         [Key]
         public string ID { get; set; }
