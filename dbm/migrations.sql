@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS ChecklistDojo.ChecklistTemplateUser(
 );
 --Example Records
 INSERT INTO ChecklistDojo.Checklist_Template_User (UserID, Name, Json)
-VALUES (01,'ExampleTable', '{ "Title": "ExampleTable","Description": "Doing a thing","Items": {"Text": "thing","Selected": true}}');
+VALUES (01,'ExampleTable', '{ "Title": "ExampleTable","Description": "Doing a thing","Items": {"Text": "thing"}}');
