@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ChecklistDojo.Autofac;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using ILogger = Serilog.ILogger;
 
@@ -34,6 +35,7 @@ namespace ChecklistDojo
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            
         }
 
             // This method gets called by the runtime after ConfigureServices is called.

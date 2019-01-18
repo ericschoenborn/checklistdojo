@@ -10,24 +10,33 @@ namespace ChecklistDojo.Services
 {
     public interface IUserTemplateService
     {
-        Task<(List<UserTemplate>, Error)> GetUserTemplates();
+        Task<(List<UserTemplate>, Exception)> GetUserTemplates();
     }
 
     public class UserTemplateService : IUserTemplateService
     {
         private ILogger Log { get; }
 
-        private IUserTemplateRepository UserTemplate { get; }
+        private IUserTemplateRepository UserTemplateRepo { get; }
 
-        public UserTemplateService(ILogger log, IUserTemplateRepository userTemplate)
+        public UserTemplateService(ILogger log, IUserTemplateRepository userTemplateRepo)
         {
             Log = log.ForContext<UserTemplateService>();
-            UserTemplate = userTemplate;
+            UserTemplateRepo = userTemplateRepo;
         }
 
-        public async Task<(List<UserTemplate>, Error)> GetUserTemplates()
+        public async Task<(List<UserTemplate>, Exception)> GetUserTemplates()
         {
-            return (null, null);
+            List<UserTemplate> userTemplates;
+            try
+            {
+                userTemplates = await UserTemplateRepo.GetUserTemplates().ConfigureAwait(false);
+                return (userTemplates, null);
+            }
+            catch (Exception ex)
+            {
+                return (null, ex);
+            }
         }
 
     }
