@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS ChecklistDojo.ChecklistTemplateUser(
   Json JSON NOT NULL
 );
 --Example Records
-INSERT INTO ChecklistDojo.Checklist_Template_User (UserID, Name, Json)
+INSERT INTO ChecklistDojo.ChecklistTemplateUser (UserID, Name, Json)
 VALUES (01,'ExampleTable', '{ "Title": "ExampleTable","Description": "Doing a thing","Items": {"Text": "thing"}}');
