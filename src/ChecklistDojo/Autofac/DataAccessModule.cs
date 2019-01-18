@@ -17,6 +17,10 @@ namespace ChecklistDojo.Autofac
             builder.RegisterType<ScaffoldingRepository>()
                 .As<ScaffoldingRepository>()
                 .SingleInstance();
+
+            builder.RegisterType<UserTemplateRepository>()
+                .As<IUserTemplateRepository>()
+                .SingleInstance();
         }
 
         //private static MySqlDatabaseAccess ConfigureDatabaseAccess(IComponentContext context)

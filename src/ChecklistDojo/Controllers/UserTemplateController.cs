@@ -1,10 +1,11 @@
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ChecklistDojo.Services;
 
 namespace ChecklistDojo.Controllers
 {
-    [Route("~/ChecklistTemplate")]
+    [Route("~/Checklist")]
     public class UserTemplateController : Controller
     {
         private IUserTemplateService UserTemplateService { get; }
@@ -17,7 +18,12 @@ namespace ChecklistDojo.Controllers
         public async Task<IActionResult> GetUserTemplates()
         {
             var (userTemplate, error) = await UserTemplateService.GetUserTemplates().ConfigureAwait(false);
-            return Json("{content}");
+
+            if (error != null)
+            {
+                return Json(error);
+            }
+            return Json(userTemplate);
         }
     }
 }
