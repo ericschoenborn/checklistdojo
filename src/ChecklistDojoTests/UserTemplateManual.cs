@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 namespace ChecklistDojoTests
 {
     [Trait("Category", "Unit")]
-    public class UnitTest1
+    public class UserTemplateManual
     {
         public JObject json = (JObject)JsonConvert.DeserializeObject(File.ReadAllText("appsettings.Development.json"));
 
