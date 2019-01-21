@@ -11,7 +11,7 @@ using ChecklistDojoTest.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ChecklistDojoTests
+namespace Project.Test
 {
     [Trait("Category", "Unit")]
     public class UserTemplateManual
