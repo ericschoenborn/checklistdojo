@@ -17,85 +17,38 @@ namespace ChecklistDojoTests
     public class UnitTest1
     {
         public JObject json = (JObject)JsonConvert.DeserializeObject(File.ReadAllText("appsettings.Development.json"));
-        [Fact]
-        public void ConnectToDataBase_WhenGoodConnectionStringGiven()
-        {
-            var path = json.GetValue("DBInfo:ConnectionString").ToString();
-            IDbConnection connection;
-            Exception problem;
-            try
-            {
-                connection = new NpgsqlConnection(path);
-                connection.Open();
-                problem = null;
-            }
-            catch(Exception ex)
-            {
-                connection = null;
-                problem = ex;
-            }
-            Assert.Null(problem);
-            Assert.NotNull(connection);
-        }
-        [Fact]
-        public void FailConnectToDataBase_WhenBadConnectionStringGiven()
-        {
-            IDbConnection connection;
-            Exception problem;
-            try
-            {
-                connection = new NpgsqlConnection("Bad Connection String");
-                connection.Open();
-                problem = null;
-            }
-            catch (Exception ex)
-            {
-                connection = null;
-                problem = ex;
-            }
-            Assert.NotNull(problem);
-            Assert.Null(connection);
-        }
+
         [Fact]
         public void RetrieveFromDatabase_WhenTableExists()
         {
-            var path = json.GetValue("DBInfo:ConnectionString").ToString();
+            var path = json.GetValue("DBInfo:ConnectionString");
             var connection = new NpgsqlConnection(path);
             connection.Open();
-            Exception problem;
-            List<UserTemplate> userTemplates;
-            try
-            {
-                userTemplates = connection.Query<UserTemplate>("SELECT * FROM ChecklistDojo.ChecklistTemplateUser").ToList();
-                problem = null;
-            }
-            catch (Exception ex)
-            {
-                userTemplates = null;
-                problem = ex;
-            }
-            Assert.Null(problem);
-            Assert.NotNull(userTemplates);
+            List<UserTemplate> userTemplates = connection.Query<UserTemplate>("SELECT * FROM ChecklistDojo.ChecklistTemplateUser").ToList();
+
+            Assert.True(userTemplates.Count>0);
+            Assert.NotNull(userTemplates[0].ID);
+            Assert.NotNull(userTemplates[0].UserID);
+            Assert.NotNull(userTemplates[0].Name);
+            Assert.NotNull(userTemplates[0].Json);
         }
         [Fact]
         public void FailRetrieveFromDatabase_WhenTableNotExists()
         {
-            var path = json.GetValue("DBInfo:ConnectionString").ToString();
+            var path = json.GetValue("DBInfo:ConnectionString");
             var connection= new NpgsqlConnection(path);
             connection.Open();
-            Exception problem;
             List<UserTemplate> userTemplates;
             try
             {
                 userTemplates = connection.Query<UserTemplate>("SELECT * FROM FAKE.TABLE").ToList();
-                problem = null;
             }
-            catch (Exception ex)
+            catch
             {
                 userTemplates = null;
-                problem = ex;
             }
-            Assert.NotNull(problem);
+            
+
             Assert.Null(userTemplates);
         }
     }
