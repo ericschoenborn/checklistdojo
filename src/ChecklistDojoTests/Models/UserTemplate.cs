@@ -1,0 +1,17 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ChecklistDojoTest.Models
+{
+
+    public class UserTemplate
+    {
+        [Key]
+        public string ID { get; set; }
+        [Required]
+        public string UserID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Json { get; set; }
+    }
+}
