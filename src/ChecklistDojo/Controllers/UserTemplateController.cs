@@ -5,7 +5,7 @@ using ChecklistDojo.Services;
 
 namespace ChecklistDojo.Controllers
 {
-    [Route("~/Checklist")]
+    [Route("/api/v1/Templates")]
     public class UserTemplateController : Controller
     {
         private IUserTemplateService UserTemplateService { get; }
