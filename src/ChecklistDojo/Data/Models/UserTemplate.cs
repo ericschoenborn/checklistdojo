@@ -6,9 +6,9 @@ namespace ChecklistDojo.Data.Models
     public class UserTemplate
     {
         [Key]
-        public string ID { get; set; }
+        public string Id { get; set; }
         [Required]
-        public string UserID { get; set; }
+        public string UserId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
