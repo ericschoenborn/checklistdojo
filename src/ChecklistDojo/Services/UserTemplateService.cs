@@ -10,7 +10,7 @@ namespace ChecklistDojo.Services
 {
     public interface IUserTemplateService
     {
-        Task<(List<UserTemplate>, Exception)> GetUserTemplates();
+        Task<(List<UserTemplate>, Error)> GetUserTemplates(string userId);
     }
 
     public class UserTemplateService : IUserTemplateService
@@ -25,17 +25,25 @@ namespace ChecklistDojo.Services
             UserTemplateRepo = userTemplateRepo;
         }
 
-        public async Task<(List<UserTemplate>, Exception)> GetUserTemplates()
+        public async Task<(List<UserTemplate>, Error)> GetUserTemplates(string userId)
         {
+            // TODO: Add logging
             List<UserTemplate> userTemplates;
             try
             {
-                userTemplates = await UserTemplateRepo.GetUserTemplates().ConfigureAwait(false);
+                userTemplates = await UserTemplateRepo.GetUserTemplates(userId).ConfigureAwait(false);
                 return (userTemplates, null);
             }
             catch (Exception ex)
             {
-                return (null, ex);
+                var error = new Error
+                {
+                    Exception = ex,
+                    Message = $"Failed to pull user templates for user with id {userId}",
+                    ErrorCode = ErrorCode.ServerError
+                };
+
+                return (null, error);
             }
         }
 

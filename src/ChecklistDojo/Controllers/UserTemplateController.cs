@@ -14,14 +14,15 @@ namespace ChecklistDojo.Controllers
             UserTemplateService = userTemplateService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetUserTemplates()
+        [HttpGet("/api/v1/Templates/{userId}")]
+        public async Task<IActionResult> GetUserTemplates(string userId)
         {
-            var (userTemplate, error) = await UserTemplateService.GetUserTemplates().ConfigureAwait(false);
+            // TODO: Add logging
+            var (userTemplate, error) = await UserTemplateService.GetUserTemplates(userId).ConfigureAwait(false);
 
             if (error != null)
             {
-                return Json(error);
+                return StatusCode(500, error);
             }
             return Json(userTemplate);
         }
